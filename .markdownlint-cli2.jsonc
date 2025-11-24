@@ -1,0 +1,8 @@
+{
+  "config": {
+    "default": true,
+    "MD013": false // line-length: Allow long lines
+  },
+  "globs": ["**/*.md"],
+  "ignores": ["node_modules"]
+}
