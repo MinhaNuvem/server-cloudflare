@@ -4,12 +4,11 @@
   "private": true,
   "scripts": {
     "deploy": "wrangler deploy",
-    "dev": "wrangler dev",
     "start": "wrangler dev",
     "test": "vitest",
     "cf-typegen": "wrangler types",
-    "check": "biome check .",
-    "fix": "biome check --write ."
+    "lint": "biome check .",
+    "format": "biome check --write ."
   },
   "devDependencies": {
     "@biomejs/biome": "2.3.7",
