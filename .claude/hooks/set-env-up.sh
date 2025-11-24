@@ -1,29 +1,20 @@
 #!/bin/bash
 set -euo pipefail
 
+DEVCONTAINER_CLI_VERSION="0.80.2"
+
 if [ "$CLAUDE_CODE_REMOTE" != "true" ]; then
   exit 0
 fi
 
+# Install Dev Containers CLI if not present
+if ! command -v devcontainer &> /dev/null; then
+  echo "Installing @devcontainers/cli@${DEVCONTAINER_CLI_VERSION}..."
+  npm install -g "@devcontainers/cli@${DEVCONTAINER_CLI_VERSION}" --silent
+fi
+
 cat <<EOF
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-⚠️  DEVELOPMENT ENVIRONMENT NOTICE
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-This project requires the Dev Containers CLI for local development.
-
-Most commands must be run inside the dev container:
-  • npm install / npm test / npm run check / npm run format
-  • wrangler dev / wrangler deploy
-
-Commands that work OUTSIDE the container:
-  • git (commit, push, pull, etc.)
-  • gh (GitHub CLI commands)
-
-To run commands inside the container:
-  devcontainer exec --workspace-folder . npm test
-
-Learn more: https://containers.dev/supporting#devcontainer-cli
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+⚠️  Dev Containers required
+   Container (via CLI): npm test, wrangler dev
+   Host: git commit, gh pr create
 EOF
