@@ -23,11 +23,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Run tests
-        run: npm test
-
-      - name: Run checks
-        run: npm run check
-
-      - name: Run markdown linting
-        run: npm run check:docs
+      - name: Run all checks in parallel
+        run: |
+          npm test &
+          npm run check &
+          npm run check:docs &
+          wait
