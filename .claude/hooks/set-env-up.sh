@@ -30,12 +30,11 @@ fi
 # Output usage instructions
 cat <<EOF
 
-✓ Devcontainer is running with session ID: $DEVCONTAINER_SESSION_ID
+Dev container is running with session ID \`$DEVCONTAINER_SESSION_ID\`.
 
-Run container commands via \`devcontainer exec\`:
-  devcontainer exec --workspace-folder . --id-label "session=\$DEVCONTAINER_SESSION_ID" npm test
+Container-level commands (npm, wrangler, etc.) MUST be run via \`devcontainer\`. For example, \`devcontainer exec --workspace-folder . --id-label "session=\$DEVCONTAINER_SESSION_ID" npm test\`.
 
-Run host commands (git, gh) directly without \`devcontainer exec\`.
+Host-level commands (\`git\`, \`gh\`) run directly without devcontainer exec.
 
 EOF
 
