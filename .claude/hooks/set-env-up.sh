@@ -11,17 +11,8 @@ if [ "$CLAUDE_CODE_REMOTE" = "true" ]; then
   fi
 fi
 
-# Check if Docker is available
-if ! command -v docker &> /dev/null; then
-  echo "Docker is not available. Skipping devcontainer setup."
-  echo "Commands will run directly in the current environment."
-  exit 0
-fi
-
-# Verify Docker daemon is accessible
+# Check if Docker daemon is accessible
 if ! docker info &> /dev/null; then
-  echo "Docker daemon is not accessible. Skipping devcontainer setup."
-  echo "Commands will run directly in the current environment."
   exit 0
 fi
 

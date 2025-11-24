@@ -4,10 +4,6 @@
 
 This repository contains the Cloudflare implementation of Nuvem's server-side services. For detailed architecture, roadmap, and design decisions, see [`product.md`](./product.md).
 
-## Development Environment
-
-This project uses [Dev Containers](https://containers.dev/) for local development.
-
 ## Tech Stack
 
 Built with TypeScript on Cloudflare Workers. Unit tests use Vitest with `@cloudflare/vitest-pool-workers`, coding conventions are enforced by Biome, and deployment is handled through Wrangler.
