@@ -22,4 +22,3 @@ if [ -n "$CLAUDE_ENV_FILE" ]; then
   echo "export DEVCONTAINER_SESSION_ID=$DEVCONTAINER_SESSION_ID" >> "$CLAUDE_ENV_FILE"
 fi
 
-echo "📦 Dev container started: $DEVCONTAINER_SESSION_ID"
