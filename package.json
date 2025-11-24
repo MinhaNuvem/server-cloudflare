@@ -9,8 +9,8 @@
     "cf-typegen": "wrangler types",
     "lint": "biome check .",
     "format": "biome check --write .",
-    "check:docs": "markdownlint-cli2",
-    "check": "npm run lint"
+    "check": "npm run lint",
+    "check:docs": "markdownlint-cli2"
   },
   "devDependencies": {
     "@biomejs/biome": "2.3.7",
