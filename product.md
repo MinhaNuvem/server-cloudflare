@@ -28,6 +28,7 @@ Any app used by individuals or households, whose data should be in the cloud for
 ## Services
 
 ### IAM
+
 - Clients. Each has its own long-lived IAM identity and MLS identity key pairs. An IAM client is the same as an MLS user (TBC).
 - Users. Each use has zero or more clients, with which they access the services. Can't have human-friendly names for privacy reasons.
 - Roles. Each role can be assigned to zero or more users.
@@ -46,8 +47,8 @@ Can send messages to local clients, webhooks, SNS topics, etc.
 CRDT-based DB
 
 - CRDTs:
-	- [Explanation](https://unzip.dev/0x018-crdts/).
-	- [Automerge](https://automerge.org/) (popular implementation).
+  - [Explanation](https://unzip.dev/0x018-crdts/).
+  - [Automerge](https://automerge.org/) (popular implementation).
 
 ### Blob Repository
 
