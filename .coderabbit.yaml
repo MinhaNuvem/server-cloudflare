@@ -98,3 +98,4 @@ knowledge_base:
     filePatterns:
       - "product.md"
       - "README.md"
+      - "threats.md"
