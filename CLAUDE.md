@@ -6,9 +6,7 @@ This repository contains the Cloudflare implementation of Nuvem's server-side se
 
 ## Development Environment
 
-This project requires [Dev Containers](https://containers.dev/) for local development. The devcontainer configuration ensures all developers and CI use an identical Node.js 22 environment.
-
-### Running Commands
+This project requires [Dev Containers](https://containers.dev/) for local development.
 
 You MUST run container-level commands, like `npm test` and `wrangler dev`, via the dev containers CLI:
 
