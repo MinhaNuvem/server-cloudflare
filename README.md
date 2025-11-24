@@ -8,6 +8,10 @@ This repository contains the Cloudflare implementation of Nuvem's server-side se
 
 This project uses [Dev Containers](https://containers.dev/) to ensure consistent development environments.
 
+## Contributing
+
+See [`CONTRIBUTING.md`](./CONTRIBUTING.md) for contribution guidelines.
+
 ## Licence
 
 This project is [fair source](https://fair.io/about/). [See licence](./LICENSE).
