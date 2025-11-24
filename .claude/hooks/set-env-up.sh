@@ -13,15 +13,15 @@ fi
 
 # Check if Docker is available
 if ! command -v docker &> /dev/null; then
-  echo "Docker is not available in this environment. Skipping devcontainer setup."
-  echo "Note: Claude Code for Web runs in a sandboxed environment without Docker support."
+  echo "Docker is not available. Skipping devcontainer setup."
+  echo "Commands will run directly in the current environment."
   exit 0
 fi
 
 # Verify Docker daemon is accessible
 if ! docker info &> /dev/null; then
   echo "Docker daemon is not accessible. Skipping devcontainer setup."
-  echo "Note: This is expected in Claude Code for Web environment."
+  echo "Commands will run directly in the current environment."
   exit 0
 fi
 
@@ -32,7 +32,7 @@ DEVCONTAINER_SESSION_ID="claude-$(date +%s)-$$"
 devcontainer up --workspace-folder . --id-label "session=$DEVCONTAINER_SESSION_ID"
 
 # Persist session ID for subsequent commands
-if [ -n "$CLAUDE_ENV_FILE" ]; then
+if [ -n "${CLAUDE_ENV_FILE:-}" ]; then
   echo "export DEVCONTAINER_SESSION_ID=$DEVCONTAINER_SESSION_ID" >> "$CLAUDE_ENV_FILE"
 fi
 

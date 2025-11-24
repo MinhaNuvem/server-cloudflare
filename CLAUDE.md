@@ -6,16 +6,27 @@ This repository contains the Cloudflare implementation of Nuvem's server-side se
 
 ## Development Environment
 
-This project requires [Dev Containers](https://containers.dev/) for local development.
+This project uses [Dev Containers](https://containers.dev/) for local development.
 
-You MUST run container-level commands, like `npm test` and `wrangler dev`, via the dev containers CLI:
+### Command Execution for Claude Code
+
+**If `DEVCONTAINER_SESSION_ID` is set**, the devcontainer is running. You MUST run container-level commands via the devcontainers CLI:
 
 ```bash
 devcontainer exec --workspace-folder . --id-label "session=$DEVCONTAINER_SESSION_ID" npm test
 devcontainer exec --workspace-folder . --id-label "session=$DEVCONTAINER_SESSION_ID" wrangler dev
 ```
 
-Host-level commands, like `git commit` and `gh pr create`, must be run directly (outside the container).
+Host-level commands like `git commit` and `gh pr create` must be run directly (outside the container).
+
+**If `DEVCONTAINER_SESSION_ID` is not set** (Claude Code for Web), run all commands directly:
+
+```bash
+npm test
+wrangler dev
+git commit
+gh pr create
+```
 
 ## Tech Stack
 

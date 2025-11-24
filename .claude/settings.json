@@ -1,4 +1,9 @@
 {
+  "sandbox": {
+    "enabled": true,
+    "autoAllowBashIfSandboxed": true,
+    "excludedCommands": ["docker", "devcontainer"]
+  },
   "permissions": {
     "allow": [
       "WebFetch",
