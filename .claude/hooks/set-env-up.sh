@@ -32,11 +32,10 @@ cat <<EOF
 
 ✓ Devcontainer is running with session ID: $DEVCONTAINER_SESSION_ID
 
-Container-level commands (npm, wrangler, etc.) MUST be run via devcontainer exec:
+Run container commands via \`devcontainer exec\`:
   devcontainer exec --workspace-folder . --id-label "session=\$DEVCONTAINER_SESSION_ID" npm test
-  devcontainer exec --workspace-folder . --id-label "session=\$DEVCONTAINER_SESSION_ID" wrangler dev
 
-Host-level commands (git, gh) run directly without devcontainer exec.
+Run host commands (git, gh) directly without \`devcontainer exec\`.
 
 EOF
 
