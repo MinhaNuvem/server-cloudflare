@@ -27,10 +27,9 @@ jobs:
       - name: Build and run dev container
         uses: devcontainers/ci@a56d055efecd725e8cfe370543b6071b79989cc8 # v0.3.1900000349
         with:
-          cacheFrom: ghcr.io/minhanuvem/server-cloudflare-devcontainer
+          cacheFrom: ghcr.io/minhanuvem/cloudflare-devcontainer
           push: never
           runCmd: |
-            npm ci
             npm test
             npm run check
             npm run check:docs

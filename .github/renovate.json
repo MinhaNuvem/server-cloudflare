@@ -8,6 +8,9 @@
   ],
   "semanticCommits": "enabled",
   "platformAutomerge": true,
+  "devcontainer": {
+    "enabled": true
+  },
   "packageRules": [
     {
       "description": "Production dependencies use fix(deps) prefix",
@@ -26,6 +29,12 @@
     {
       "description": "GitHub Actions use chore(deps) prefix",
       "matchManagers": ["github-actions"],
+      "semanticCommitType": "chore",
+      "semanticCommitScope": "deps"
+    },
+    {
+      "description": "Dev Container images use chore(deps) prefix",
+      "matchManagers": ["devcontainer"],
       "semanticCommitType": "chore",
       "semanticCommitScope": "deps"
     },
