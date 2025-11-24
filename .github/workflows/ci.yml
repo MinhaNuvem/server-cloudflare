@@ -26,8 +26,5 @@ jobs:
       - name: Run tests
         run: npm test
 
-      - name: Run linting
-        run: npm run lint
-
-      - name: Run markdown linting
-        run: npm run check:docs
+      - name: Run checks
+        run: npm run check
