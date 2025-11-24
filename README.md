@@ -6,7 +6,7 @@ This repository contains the Cloudflare implementation of Nuvem's server-side se
 
 ## Development
 
-This project uses [Dev Containers](https://containers.dev/) to ensure consistent development environments. See [CLAUDE.md](./CLAUDE.md) for setup instructions.
+This project uses [Dev Containers](https://containers.dev/) to ensure consistent development environments.
 
 ## Licence
 
