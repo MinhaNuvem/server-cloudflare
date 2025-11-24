@@ -1,18 +1,21 @@
-name: CI
+name: Pre-build Dev Container
 
 on:
   push:
     branches: [main]
-  pull_request:
+
+concurrency:
+  group: devcontainer-prebuild
+  cancel-in-progress: true
 
 jobs:
-  build-and-test:
-    name: Build and Test
+  prebuild:
+    name: Pre-build Dev Container Image
     runs-on: ubuntu-24.04
-    timeout-minutes: 10
+    timeout-minutes: 15
     permissions:
       contents: read
-      packages: read
+      packages: write
     steps:
       - name: Checkout repository
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
@@ -24,12 +27,9 @@ jobs:
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build and run dev container
+      - name: Pre-build dev container image
         uses: devcontainers/ci@a56d055efecd725e8cfe370543b6071b79989cc8 # v0.3.1900000349
         with:
+          imageName: ghcr.io/minhanuvem/cloudflare-devcontainer
           cacheFrom: ghcr.io/minhanuvem/cloudflare-devcontainer
-          push: never
-          runCmd: |
-            npm test
-            npm run check
-            npm run check:docs
+          push: always

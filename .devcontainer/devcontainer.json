@@ -1,0 +1,6 @@
+{
+  "name": "Nuvem Development Container",
+  // 22-bookworm
+  "image": "mcr.microsoft.com/devcontainers/javascript-node@sha256:8ecd955dc231543929c46db04ab1a8962642bed804a84cdebb87a971dd5916d8",
+  "postCreateCommand": "npm ci"
+}
