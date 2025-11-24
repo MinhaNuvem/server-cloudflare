@@ -10,8 +10,7 @@
 		"cf-typegen": "wrangler types",
 		"check": "biome check .",
 		"format": "biome format --write .",
-		"lint": "npm run check",
-		"lint:fix": "biome check --write ."
+		"fix": "biome check --write ."
 	},
 	"devDependencies": {
 		"@biomejs/biome": "2.3.7",
