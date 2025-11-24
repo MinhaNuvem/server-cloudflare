@@ -1,0 +1,38 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended",
+    "customManagers:biomeVersions",
+    "helpers:pinGitHubActionDigests",
+    "schedule:weekly"
+  ],
+  "semanticCommits": "enabled",
+  "platformAutomerge": true,
+  "packageRules": [
+    {
+      "description": "Production dependencies use fix(deps) prefix",
+      "matchManagers": ["npm"],
+      "matchDepTypes": ["dependencies"],
+      "semanticCommitType": "fix",
+      "semanticCommitScope": "deps"
+    },
+    {
+      "description": "Development dependencies use chore(deps) prefix",
+      "matchManagers": ["npm"],
+      "matchDepTypes": ["devDependencies"],
+      "semanticCommitType": "chore",
+      "semanticCommitScope": "deps"
+    },
+    {
+      "description": "GitHub Actions use chore(deps) prefix",
+      "matchManagers": ["github-actions"],
+      "semanticCommitType": "chore",
+      "semanticCommitScope": "deps"
+    },
+    {
+      "description": "Auto-merge patch and minor updates",
+      "matchUpdateTypes": ["patch", "minor"],
+      "automerge": true
+    }
+  ]
+}
