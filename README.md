@@ -4,6 +4,10 @@
 
 This repository contains the Cloudflare implementation of Nuvem's server-side services. For detailed architecture, roadmap, and design decisions, see [`product.md`](./product.md).
 
+## Contributing
+
+See [`CONTRIBUTING.md`](./CONTRIBUTING.md) for contribution guidelines.
+
 ## Licence
 
 This project is [fair source](https://fair.io/about/). [See licence](./LICENSE).
