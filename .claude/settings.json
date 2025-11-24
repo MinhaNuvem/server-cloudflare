@@ -1,20 +1,20 @@
 {
-  "permissions": {
-    "allow": [
-      "WebFetch",
-      "WebSearch",
-      "Bash(git ls-remote:*)",
-      "Bash(git log:*)",
-      "Bash(git diff:*)",
-      "Bash(git status:*)",
-      "Bash(gh run list:*)",
-      "Bash(gh run view:*)",
-      "Bash(gh pr list:*)",
-      "Bash(gh pr view:*)",
-      "Bash(gh repo view:*)",
-      "Bash(gh issue view:*)"
-    ],
-    "deny": [],
-    "ask": ["Bash(gh api:*)"]
-  }
+	"permissions": {
+		"allow": [
+			"WebFetch",
+			"WebSearch",
+			"Bash(git ls-remote:*)",
+			"Bash(git log:*)",
+			"Bash(git diff:*)",
+			"Bash(git status:*)",
+			"Bash(gh run list:*)",
+			"Bash(gh run view:*)",
+			"Bash(gh pr list:*)",
+			"Bash(gh pr view:*)",
+			"Bash(gh repo view:*)",
+			"Bash(gh issue view:*)"
+		],
+		"deny": [],
+		"ask": ["Bash(gh api:*)"]
+	}
 }
