@@ -1,16 +1,6 @@
 #!/bin/bash
 set -euo pipefail
 
-DEVCONTAINER_CLI_VERSION="0.80.2"
-
-# Install CLI only for remote Claude Code
-if [ "$CLAUDE_CODE_REMOTE" = "true" ]; then
-  if ! command -v devcontainer &> /dev/null; then
-    echo "Installing @devcontainers/cli@${DEVCONTAINER_CLI_VERSION}..."
-    npm install -g "@devcontainers/cli@${DEVCONTAINER_CLI_VERSION}" --silent
-  fi
-fi
-
 # Check if Docker daemon is accessible
 if ! docker info &> /dev/null; then
   exit 0
