@@ -15,9 +15,7 @@
     {
       "customType": "regex",
       "fileMatch": ["^\\.claude/hooks/set-env-up\\.sh$"],
-      "matchStrings": [
-        "DEVCONTAINER_CLI_VERSION=\"(?<currentValue>.*?)\""
-      ],
+      "matchStrings": ["DEVCONTAINER_CLI_VERSION=\\\"(?<currentValue>.*?)\\\""],
       "datasourceTemplate": "npm",
       "depNameTemplate": "@devcontainers/cli"
     }
