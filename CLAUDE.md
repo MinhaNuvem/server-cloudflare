@@ -4,6 +4,19 @@
 
 This repository contains the Cloudflare implementation of Nuvem's server-side services. For detailed architecture, roadmap, and design decisions, see [`product.md`](./product.md).
 
+## Development Environment
+
+This project requires [Dev Containers](https://containers.dev/) for local development.
+
+You MUST run container-level commands, like `npm test` and `wrangler dev`, via the dev containers CLI:
+
+```bash
+devcontainer exec --workspace-folder . --id-label "session=$DEVCONTAINER_SESSION_ID" npm test
+devcontainer exec --workspace-folder . --id-label "session=$DEVCONTAINER_SESSION_ID" wrangler dev
+```
+
+Host-level commands, like `git commit` and `gh pr create`, must be run directly (outside the container).
+
 ## Tech Stack
 
 Built with TypeScript on Cloudflare Workers. Unit tests use Vitest with `@cloudflare/vitest-pool-workers`, coding conventions are enforced by Biome, and deployment is handled through Wrangler.
