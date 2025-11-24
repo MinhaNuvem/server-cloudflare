@@ -8,11 +8,10 @@
 		"start": "wrangler dev",
 		"test": "vitest",
 		"cf-typegen": "wrangler types",
-		"lint": "biome check .",
-		"lint:fix": "biome check --write .",
-		"lint:unsafe": "biome check --write --unsafe .",
+		"check": "biome check .",
 		"format": "biome format --write .",
-		"check": "biome check ."
+		"lint": "npm run check",
+		"lint:fix": "biome check --write ."
 	},
 	"devDependencies": {
 		"@biomejs/biome": "2.3.7",
