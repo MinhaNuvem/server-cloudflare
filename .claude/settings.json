@@ -22,5 +22,18 @@
     ],
     "deny": ["Bash(git push:*)"],
     "ask": ["Bash(gh api:*)", "Bash(git commit:*)"]
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "startup",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$CLAUDE_PROJECT_DIR\"/.claude/hooks/install-dependencies.sh"
+          }
+        ]
+      }
+    ]
   }
 }
