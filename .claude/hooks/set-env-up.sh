@@ -3,18 +3,23 @@ set -euo pipefail
 
 DEVCONTAINER_CLI_VERSION="0.80.2"
 
-if [ "$CLAUDE_CODE_REMOTE" != "true" ]; then
-  exit 0
+# Install CLI only for remote Claude Code
+if [ "$CLAUDE_CODE_REMOTE" == "true" ]; then
+  if ! command -v devcontainer &> /dev/null; then
+    echo "Installing @devcontainers/cli@${DEVCONTAINER_CLI_VERSION}..."
+    npm install -g "@devcontainers/cli@${DEVCONTAINER_CLI_VERSION}" --silent
+  fi
 fi
 
-# Install Dev Containers CLI if not present
-if ! command -v devcontainer &> /dev/null; then
-  echo "Installing @devcontainers/cli@${DEVCONTAINER_CLI_VERSION}..."
-  npm install -g "@devcontainers/cli@${DEVCONTAINER_CLI_VERSION}" --silent
+# Generate unique session ID
+DEVCONTAINER_SESSION_ID="claude-$(date +%s)-$$"
+
+# Start dev container with unique session label
+devcontainer up --workspace-folder . --id-label "session=$DEVCONTAINER_SESSION_ID"
+
+# Persist session ID for subsequent commands
+if [ -n "$CLAUDE_ENV_FILE" ]; then
+  echo "export DEVCONTAINER_SESSION_ID=$DEVCONTAINER_SESSION_ID" >> "$CLAUDE_ENV_FILE"
 fi
 
-cat <<EOF
-⚠️  Dev Containers required
-   Container (via CLI): npm test, wrangler dev
-   Host: git commit, gh pr create
-EOF
+echo "📦 Dev container started: $DEVCONTAINER_SESSION_ID"
