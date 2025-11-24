@@ -28,13 +28,15 @@ if [ -n "${CLAUDE_ENV_FILE:-}" ]; then
 fi
 
 # Output usage instructions
-echo ""
-echo "✓ Devcontainer is running with session ID: $DEVCONTAINER_SESSION_ID"
-echo ""
-echo "Container-level commands (npm, wrangler, etc.) MUST be run via devcontainer exec:"
-echo "  devcontainer exec --workspace-folder . --id-label \"session=\$DEVCONTAINER_SESSION_ID\" npm test"
-echo "  devcontainer exec --workspace-folder . --id-label \"session=\$DEVCONTAINER_SESSION_ID\" wrangler dev"
-echo ""
-echo "Host-level commands (git, gh) run directly without devcontainer exec."
-echo ""
+cat <<EOF
+
+✓ Devcontainer is running with session ID: $DEVCONTAINER_SESSION_ID
+
+Container-level commands (npm, wrangler, etc.) MUST be run via devcontainer exec:
+  devcontainer exec --workspace-folder . --id-label "session=\$DEVCONTAINER_SESSION_ID" npm test
+  devcontainer exec --workspace-folder . --id-label "session=\$DEVCONTAINER_SESSION_ID" wrangler dev
+
+Host-level commands (git, gh) run directly without devcontainer exec.
+
+EOF
 
