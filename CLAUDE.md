@@ -15,12 +15,7 @@ devcontainer exec --workspace-folder . --id-label "session=$DEVCONTAINER_SESSION
 devcontainer exec --workspace-folder . --id-label "session=$DEVCONTAINER_SESSION_ID" wrangler dev
 ```
 
-Host-level commands, like `git commit` and `gh pr create`, must be run directly (outside the container):
-
-```bash
-git commit -m "Your message"
-gh pr create
-```
+Host-level commands, like `git commit` and `gh pr create`, must be run directly (outside the container).
 
 ## Tech Stack
 
