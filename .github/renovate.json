@@ -10,9 +10,17 @@
   "platformAutomerge": true,
   "packageRules": [
     {
-      "description": "npm dependencies use fix(deps) prefix",
+      "description": "Production dependencies use fix(deps) prefix",
       "matchManagers": ["npm"],
+      "matchDepTypes": ["dependencies"],
       "semanticCommitType": "fix",
+      "semanticCommitScope": "deps"
+    },
+    {
+      "description": "Development dependencies use chore(deps) prefix",
+      "matchManagers": ["npm"],
+      "matchDepTypes": ["devDependencies"],
+      "semanticCommitType": "chore",
       "semanticCommitScope": "deps"
     },
     {
