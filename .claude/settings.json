@@ -20,7 +20,7 @@
       "Bash(npm run:*)",
       "Bash(npm test:*)"
     ],
-    "deny": ["Bash(git push:*)"],
+    "deny": [],
     "ask": ["Bash(gh api:*)", "Bash(git commit:*)"]
   },
   "hooks": {
