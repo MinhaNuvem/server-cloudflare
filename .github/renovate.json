@@ -17,15 +17,8 @@
       "semanticCommitScope": "deps"
     },
     {
-      "description": "Development dependencies use chore(deps) prefix",
-      "matchManagers": ["npm"],
-      "matchDepTypes": ["devDependencies"],
-      "semanticCommitType": "chore",
-      "semanticCommitScope": "deps"
-    },
-    {
-      "description": "GitHub Actions use chore(deps) prefix",
-      "matchManagers": ["github-actions"],
+      "description": "Development dependencies and GitHub Actions use chore(deps) prefix",
+      "matchManagers": ["npm", "github-actions"],
       "semanticCommitType": "chore",
       "semanticCommitScope": "deps"
     },
