@@ -11,17 +11,6 @@
   "devcontainer": {
     "enabled": true
   },
-  "customManagers": [
-    {
-      "customType": "regex",
-      "fileMatch": ["^\\.claude/hooks/set-env-up\\.sh$"],
-      "matchStrings": [
-        "DEVCONTAINER_CLI_VERSION=\"(?<currentValue>.*?)\""
-      ],
-      "datasourceTemplate": "npm",
-      "depNameTemplate": "@devcontainers/cli"
-    }
-  ],
   "packageRules": [
     {
       "description": "Production dependencies use fix(deps) prefix",
@@ -46,13 +35,6 @@
     {
       "description": "Dev Container images use chore(deps) prefix",
       "matchManagers": ["devcontainer"],
-      "semanticCommitType": "chore",
-      "semanticCommitScope": "deps"
-    },
-    {
-      "description": "Dev Containers CLI uses chore(deps) prefix",
-      "matchManagers": ["regex"],
-      "matchDepNames": ["@devcontainers/cli"],
       "semanticCommitType": "chore",
       "semanticCommitScope": "deps"
     },
