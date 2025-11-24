@@ -36,3 +36,14 @@ if [ -n "${CLAUDE_ENV_FILE:-}" ]; then
   echo "export DEVCONTAINER_SESSION_ID=$DEVCONTAINER_SESSION_ID" >> "$CLAUDE_ENV_FILE"
 fi
 
+# Output usage instructions
+echo ""
+echo "✓ Devcontainer is running with session ID: $DEVCONTAINER_SESSION_ID"
+echo ""
+echo "Container-level commands (npm, wrangler, etc.) MUST be run via devcontainer exec:"
+echo "  devcontainer exec --workspace-folder . --id-label \"session=\$DEVCONTAINER_SESSION_ID\" npm test"
+echo "  devcontainer exec --workspace-folder . --id-label \"session=\$DEVCONTAINER_SESSION_ID\" wrangler dev"
+echo ""
+echo "Host-level commands (git, gh) run directly without devcontainer exec."
+echo ""
+
