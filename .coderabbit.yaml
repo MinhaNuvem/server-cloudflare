@@ -1,0 +1,100 @@
+language: "en-GB"
+tone_instructions: "Focus on TypeScript best practices, Cloudflare Workers patterns, serverless architecture, and zero-knowledge security principles. Be precise and technical."
+
+reviews:
+  profile: "assertive"
+  request_changes_workflow: true
+  fail_commit_status: true
+
+  # Noise reduction
+  review_status: false
+  high_level_summary: false
+  collapse_walkthrough: true
+  poem: false
+
+  auto_review:
+    base_branches:
+      - main
+
+  path_instructions:
+    - path: ".github/workflows/**/*.yml"
+      instructions: |
+        GitHub Actions workflows MUST use full commit SHAs instead of tags for all actions.
+        This prevents supply chain attacks and ensures reproducible builds.
+        Example: Use 'actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.0.2' instead of 'actions/checkout@v4.0.2'.
+
+    - path: "src/**/*.ts"
+      instructions: |
+        TypeScript source code for Cloudflare Workers. Ensure:
+        - Proper typing (avoid 'any' unless necessary)
+        - Cloudflare Workers API best practices
+        - Serverless patterns (stateless, efficient cold starts)
+        - Zero-knowledge architecture principles (data should be encrypted end-to-end)
+        - Proper error handling for edge runtime
+        - Security best practices (input validation, sanitization)
+
+    - path: "test/**/*.ts"
+      instructions: |
+        Test files using Vitest. Verify:
+        - Tests are comprehensive and cover edge cases
+        - Proper use of Cloudflare Workers test utilities
+        - Mock data doesn't expose sensitive information
+        - Test descriptions are clear and descriptive
+
+    - path: "*.config.{js,ts,json}"
+      instructions: |
+        Configuration files. Check for:
+        - No hardcoded secrets or credentials
+        - Proper TypeScript/build configuration
+        - Cloudflare Workers compatibility settings
+
+    - path: "wrangler.toml"
+      instructions: |
+        Cloudflare Workers configuration. Verify:
+        - No secrets in the file (should use environment variables)
+        - Proper route and binding configuration
+        - Compatibility dates are appropriate
+
+    - path: "CLAUDE.md"
+      instructions: |
+        High-level document to steer AI coding agent Claude Code. Must contain
+        all essential context without overlapping significantly with other documents.
+        Keep succinct (under 100 lines).
+
+    - path: "*.md"
+      instructions: |
+        Documentation should be clear, accurate, and aligned with current implementation.
+        British spelling MUST be used.
+
+  pre_merge_checks:
+    docstrings:
+      mode: "off"
+
+    title:
+      mode: "error"
+      requirements: "Title should be concise, descriptive, free of typos, and ideally under 60 characters."
+
+    description:
+      mode: "error"
+
+    issue_assessment:
+      mode: "error"
+
+  finishing_touches:
+    docstrings:
+      enabled: false
+
+    unit_tests:
+      enabled: false
+
+  tools:
+    github-checks:
+      enabled: true
+      timeout_ms: 900000
+
+knowledge_base:
+  code_guidelines:
+    enabled: true
+    filePatterns:
+      - "product.md"
+      - "README.md"
