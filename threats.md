@@ -1,6 +1,6 @@
 # Threat Model
 
-Concise threat model to inform architectural decisions and code reviews. Focus on product-level threats; service-specific threats to be documented separately.
+This threat model is meant to inform architectural decisions and code reviews. It focuses on product-level threats, and service-specific threats are to be documented separately.
 
 ## Threat Actors
 
@@ -24,6 +24,7 @@ Concise threat model to inform architectural decisions and code reviews. Focus o
 - Network traffic interception and analysis.
 - Metadata collection (connection times, frequencies, peer relationships).
 - Correlation attacks linking pseudonymous identities to real users.
+- Timing attacks and user fingerprinting through connection characteristics.
 - Compelled disclosure of encrypted data for offline cryptanalysis.
 
 ### Cryptographic
@@ -39,12 +40,10 @@ Concise threat model to inform architectural decisions and code reviews. Focus o
 - Unauthorised client registration or impersonation.
 - Stolen credentials or key material enabling unauthorised access.
 - Privilege escalation through policy bypass.
-- Sybil attacks creating multiple identities to compromise system integrity.
 
 ### Data Integrity
 
 - Tampering with encrypted data to cause application failures or data corruption.
-- CRDT conflict manipulation to achieve unintended state.
 - Message replay or reordering attacks.
 - Deletion or corruption of encrypted backups.
 
@@ -53,13 +52,6 @@ Concise threat model to inform architectural decisions and code reviews. Focus o
 - Resource exhaustion through excessive storage or compute usage.
 - Denial of service through P2P broker flooding.
 - Cost-based DoS exploiting serverless billing models.
-
-### Privacy & Metadata
-
-- Traffic analysis revealing user behaviour patterns.
-- Timing attacks correlating user activities.
-- User fingerprinting through connection characteristics.
-- Inference of social graphs from communication patterns.
 
 ## Out of Scope
 
