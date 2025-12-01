@@ -4,5 +4,6 @@
     "dockerfile": "Dockerfile",
     "context": ".."
   },
-  "image": "ghcr.io/minhanuvem/cloudflare-devcontainer:latest"
+  "image": "ghcr.io/minhanuvem/cloudflare-devcontainer:latest",
+  "postCreateCommand": "npm ci --no-fund --no-update-notifier --no-audit"
 }
