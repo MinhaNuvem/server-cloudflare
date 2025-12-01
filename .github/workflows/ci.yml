@@ -30,6 +30,7 @@ jobs:
           cacheFrom: ghcr.io/minhanuvem/cloudflare-devcontainer
           push: never
           runCmd: |
+            set -eo pipefail
             npm test
             npm run check
             npm run check:docs
