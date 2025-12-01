@@ -1,7 +1,8 @@
 {
   "name": "Nuvem Development Container",
   "build": {
-    "dockerfile": "Dockerfile"
+    "dockerfile": "Dockerfile",
+    "context": ".."
   },
-  "image": "ghcr.io/minhanuvem/cloudflare-devcontainer@sha256:c70c4354e0163b15e57125e8d8fdf3e794aa508da13095638695846a297ed15d"
+  "image": "ghcr.io/minhanuvem/cloudflare-devcontainer:latest"
 }
