@@ -17,7 +17,7 @@ Built with TypeScript on Cloudflare Workers. Unit tests use Vitest with `@cloudf
 
 ## Command Execution
 
-**Nearly all commands MUST be executed via Dev Containers**:
+**Nearly all commands MUST be executed via Dev Containers**, as long as `devcontainer` is available:
 
 1. Create a Dev Container: `devcontainer up --workspace-folder=.` (outputs container id in last line upon success).
 2. Execute commands using the container id: `devcontainer exec --workspace-folder=. <command>`. For example, `devcontainer exec --workspace-folder=. npm test`.
