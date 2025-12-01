@@ -17,9 +17,7 @@
       "Bash(gh repo view:*)",
       "Bash(gh issue view:*)",
 
-      "Bash(dev-bin/x-devcontainer create)",
-      "Bash(dev-bin/x-devcontainer delete:*)",
-      "Bash(dev-bin/x-devcontainer exec:*)"
+      "Bash(devcontainer:*)"
     ],
     "deny": [],
     "ask": ["Bash(gh api:*)", "Bash(git commit:*)", "Bash(dev-bin/x-devcontainer delete-all:*)"]
