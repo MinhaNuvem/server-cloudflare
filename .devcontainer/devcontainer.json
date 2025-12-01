@@ -1,6 +1,7 @@
 {
   "name": "Nuvem Development Container",
-  // 22-bookworm
-  "image": "mcr.microsoft.com/devcontainers/javascript-node@sha256:8ecd955dc231543929c46db04ab1a8962642bed804a84cdebb87a971dd5916d8",
-  "postCreateCommand": "npm ci"
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "image": "ghcr.io/minhanuvem/cloudflare-devcontainer@sha256:c70c4354e0163b15e57125e8d8fdf3e794aa508da13095638695846a297ed15d"
 }
