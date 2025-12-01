@@ -2,12 +2,6 @@ name: Claude Code (Shared)
 
 on:
   workflow_call:
-    inputs:
-      max_turns:
-        description: Maximum number of turns for Claude Code
-        type: number
-        default: 50
-        required: false
     secrets:
       claude_code_oauth_token:
         description: OAuth token for Claude Code
@@ -41,4 +35,4 @@ jobs:
         with:
           claude_code_oauth_token: ${{ secrets.claude_code_oauth_token }}
           claude_args: |
-            --max-turns ${{ inputs.max_turns }}
+            --max-turns 50
