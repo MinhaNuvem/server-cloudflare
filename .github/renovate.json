@@ -11,6 +11,15 @@
   "devcontainer": {
     "enabled": true
   },
+  "customManagers": [
+    {
+      "customType": "regex",
+      "description": "Track npm packages installed in GitHub Actions workflows",
+      "fileMatch": ["\\.github/workflows/.+\\.yml$"],
+      "matchStrings": ["npm install -g (?<depName>@?[a-z0-9-]+\\/[a-z0-9-]+)@(?<currentValue>[0-9.]+)"],
+      "datasourceTemplate": "npm"
+    }
+  ],
   "packageRules": [
     {
       "description": "Production dependencies use fix(deps) prefix",
@@ -35,6 +44,13 @@
     {
       "description": "Dev Container images use chore(deps) prefix",
       "matchManagers": ["devcontainer"],
+      "semanticCommitType": "chore",
+      "semanticCommitScope": "deps"
+    },
+    {
+      "description": "NPM packages in workflows use chore(deps) prefix",
+      "matchManagers": ["custom.regex"],
+      "matchFileNames": [".github/workflows/**"],
       "semanticCommitType": "chore",
       "semanticCommitScope": "deps"
     },
