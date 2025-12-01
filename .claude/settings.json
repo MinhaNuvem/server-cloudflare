@@ -21,5 +21,18 @@
     ],
     "deny": [],
     "ask": ["Bash(gh api:*)", "Bash(git commit:*)", "Bash(dev-bin/x-devcontainer delete-all:*)"]
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "startup",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$CLAUDE_PROJECT_DIR\"/.claude/hooks/set-env-up.sh"
+          }
+        ]
+      }
+    ]
   }
 }
