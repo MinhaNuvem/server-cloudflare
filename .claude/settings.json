@@ -22,10 +22,6 @@
       "Bash(dev-bin/x-devcontainer exec:*)"
     ],
     "deny": [],
-    "ask": [
-      "Bash(gh api:*)",
-      "Bash(git commit:*)",
-      "Bash(dev-bin/x-devcontainer delete-all:*)"
-    ]
+    "ask": ["Bash(gh api:*)", "Bash(git commit:*)", "Bash(dev-bin/x-devcontainer delete-all:*)"]
   }
 }
