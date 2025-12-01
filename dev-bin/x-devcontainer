@@ -1,0 +1,115 @@
+#!/bin/bash
+# x-devcontainer - Minimal devcontainer wrapper for Claude Code
+set -euo pipefail
+
+readonly WORKSPACE_FOLDER="${WORKSPACE_FOLDER:-.}"
+
+cmd_create() {
+  # Check for Claude Code for Web (Docker unavailable)
+  if [ "${CLAUDE_CODE_REMOTE:-}" = "true" ]; then
+    echo "Error: Docker is unavailable in Claude Code for Web" >&2
+    exit 1
+  fi
+
+  # Generate unique session ID
+  local session_id="claude-$(date +%s)-$$"
+
+  # Start devcontainer with labels
+  devcontainer up \
+    --workspace-folder "$WORKSPACE_FOLDER" \
+    --id-label "session=$session_id" \
+    --id-label "claudecode=1" \
+    >&2
+
+  # Output session ID to stdout (for tracking)
+  echo "$session_id"
+}
+
+cmd_exec() {
+  if [ $# -lt 2 ]; then
+    echo "Usage: $0 exec <session-id> <command> [args...]" >&2
+    exit 1
+  fi
+
+  local session_id="$1"
+  shift
+
+  # Execute command using session label
+  devcontainer exec \
+    --workspace-folder "$WORKSPACE_FOLDER" \
+    --id-label "session=$session_id" \
+    --id-label "claudecode=1" \
+    "$@"
+}
+
+cmd_delete() {
+  if [ $# -ne 1 ]; then
+    echo "Usage: $0 delete <session-id>" >&2
+    exit 1
+  fi
+
+  local session_id="$1"
+
+  # Find container by session label
+  local container_id
+  container_id=$(docker ps -aq \
+    --filter "label=session=$session_id" \
+    --filter "label=claudecode=1" | head -1)
+
+  # Stop and remove container (silent if doesn't exist)
+  if [ -n "$container_id" ]; then
+    docker rm -fv "$container_id" >/dev/null 2>&1 || true
+  fi
+}
+
+cmd_delete_all() {
+  local containers
+  containers=$(docker ps -aq --filter "label=claudecode=1")
+
+  if [ -z "$containers" ]; then
+    echo "No Claude Code devcontainers found" >&2
+    return 0
+  fi
+
+  echo "Deleting all Claude Code devcontainers..." >&2
+  echo "$containers" | while read -r container_id; do
+    docker rm -fv "$container_id" >/dev/null 2>&1 || true
+  done
+  echo "All Claude Code devcontainers deleted" >&2
+}
+
+# Main command dispatcher
+main() {
+  local cmd="${1:-}"
+
+  case "$cmd" in
+    create)
+      cmd_create
+      ;;
+    exec)
+      shift
+      cmd_exec "$@"
+      ;;
+    delete)
+      shift
+      cmd_delete "$@"
+      ;;
+    delete-all)
+      cmd_delete_all
+      ;;
+    *)
+      cat >&2 <<EOF
+Usage: $0 <command>
+
+Commands:
+  create                          Create devcontainer, output session ID
+  exec <session-id> <cmd> [args]  Execute command in container
+  delete <session-id>             Delete container
+  delete-all                      Delete all Claude Code devcontainers
+EOF
+      exit 1
+      ;;
+  esac
+}
+
+main "$@"
