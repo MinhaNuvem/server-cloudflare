@@ -4,6 +4,7 @@
     "config:recommended",
     "customManagers:biomeVersions",
     "helpers:pinGitHubActionDigests",
+    "docker:pinDigests",
     "schedule:weekly"
   ],
   "semanticCommits": "enabled",
@@ -11,6 +12,16 @@
   "devcontainer": {
     "enabled": true
   },
+  "customManagers": [
+    {
+      "customType": "regex",
+      "fileMatch": ["(^|/)\\.devcontainer/Dockerfile$"],
+      "matchStrings": [
+        "# renovate: datasource=(?<datasource>[a-z-]+?) depName=(?<depName>.+?)\\s+# (?<currentValue>.+?)\\s+FROM (?<packageName>.+?)@(?<currentDigest>sha256:[a-f0-9]+)"
+      ],
+      "autoReplaceStringTemplate": "# renovate: datasource={{{datasource}}} depName={{{depName}}}\n# {{{newValue}}}\nFROM {{{packageName}}}@{{{newDigest}}}"
+    }
+  ],
   "packageRules": [
     {
       "description": "Production dependencies use fix(deps) prefix",
