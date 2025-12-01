@@ -16,7 +16,9 @@
       "customType": "regex",
       "description": "Track npm packages installed in GitHub Actions workflows",
       "fileMatch": ["\\.github/workflows/.+\\.yml$"],
-      "matchStrings": ["npm install -g (?<depName>@?[a-z0-9-]+\\/[a-z0-9-]+)@(?<currentValue>[0-9.]+)"],
+      "matchStrings": [
+        "npm install -g (?<depName>@?[a-z0-9-]+\\/[a-z0-9-]+)@(?<currentValue>[0-9.]+)"
+      ],
       "datasourceTemplate": "npm"
     }
   ],
