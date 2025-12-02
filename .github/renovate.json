@@ -54,7 +54,8 @@
     },
     {
       "description": "Dev Container images use chore(deps) prefix",
-      "matchManagers": ["devcontainer"],
+      "matchManagers": ["devcontainer", "custom.regex"],
+      "matchFileNames": [".devcontainer/**"],
       "semanticCommitType": "chore",
       "semanticCommitScope": "deps"
     },
