@@ -20,6 +20,15 @@
         "# renovate: datasource=(?<datasource>[a-z-]+?) depName=(?<depName>.+?)\\s+# (?<currentValue>.+?)\\s+FROM (?<packageName>.+?)@(?<currentDigest>sha256:[a-f0-9]+)"
       ],
       "autoReplaceStringTemplate": "# renovate: datasource={{{datasource}}} depName={{{depName}}}\n# {{{newValue}}}\nFROM {{{packageName}}}@{{{newDigest}}}"
+    },
+    {
+      "customType": "regex",
+      "description": "Track npm packages installed in GitHub Actions workflows",
+      "fileMatch": ["\\.github/workflows/.+\\.yml$"],
+      "matchStrings": [
+        "npm install -g (?<depName>@?[a-z0-9-]+\\/[a-z0-9-]+)@(?<currentValue>[0-9.]+)"
+      ],
+      "datasourceTemplate": "npm"
     }
   ],
   "packageRules": [
@@ -46,6 +55,13 @@
     {
       "description": "Dev Container images use chore(deps) prefix",
       "matchManagers": ["devcontainer"],
+      "semanticCommitType": "chore",
+      "semanticCommitScope": "deps"
+    },
+    {
+      "description": "NPM packages in workflows use chore(deps) prefix",
+      "matchManagers": ["custom.regex"],
+      "matchFileNames": [".github/workflows/**"],
       "semanticCommitType": "chore",
       "semanticCommitScope": "deps"
     },
