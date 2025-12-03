@@ -38,8 +38,11 @@
       "semanticCommitScope": "deps"
     },
     {
-      "description": "GitHub Actions use chore(deps) prefix",
+      "description": "GitHub Actions use chore(deps) prefix and group by action",
       "matchManagers": ["github-actions"],
+      "groupName": "{{{depName}}}",
+      "separateMajorMinor": false,
+      "separateMinorPatch": false,
       "semanticCommitType": "chore",
       "semanticCommitScope": "deps"
     },
