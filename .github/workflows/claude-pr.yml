@@ -25,6 +25,12 @@ jobs:
           format('claude-pr-{0}-{1}', github.event.pull_request.number, github.event_name)
         }}
       cancel-in-progress: ${{ github.event_name == 'pull_request_review_comment' }}
+    permissions:
+      contents: write
+      pull-requests: write
+      issues: write
+      actions: read
+      id-token: write
     uses: ./.github/workflows/_claude-code.yml
     secrets:
       claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
