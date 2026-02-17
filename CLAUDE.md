@@ -30,3 +30,7 @@ Commands that depend on host-level environment variables, processes, and/or file
 ## Language
 
 British English MUST be used throughout the codebase, except when using pre-existing terms such as "MIT License".
+
+## References
+
+-[The Messaging Layer Security (MLS) Architecture](https://github.com/mlswg/mls-architecture/raw/refs/heads/main/draft-ietf-mls-architecture.md).
