@@ -1,0 +1,46 @@
+name: OpenGrep
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  scan:
+    name: SAST Scan
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      security-events: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - name: Install cosign
+        uses: sigstore/cosign-installer@faadad0cce49287aee09b3a48701e75088a2c6ad # v4.0.0
+
+      - name: Install OpenGrep
+        run: |
+          set -euo pipefail
+          curl --fail --silent --show-error --location https://github.com/opengrep/opengrep/releases/download/v1.16.0/opengrep_manylinux_x86 --output /tmp/opengrep
+          curl --fail --silent --show-error --location https://github.com/opengrep/opengrep/releases/download/v1.16.0/opengrep_manylinux_x86.sig --output /tmp/opengrep.sig
+          curl --fail --silent --show-error --location https://github.com/opengrep/opengrep/releases/download/v1.16.0/opengrep_manylinux_x86.cert --output /tmp/opengrep.cert
+          cosign verify-blob \
+            --certificate /tmp/opengrep.cert \
+            --signature /tmp/opengrep.sig \
+            --certificate-identity "https://github.com/opengrep/opengrep/.github/workflows/rolling-release.yml@refs/heads/main" \
+            --certificate-oidc-issuer "https://token.actions.githubusercontent.com" \
+            /tmp/opengrep
+          cp /tmp/opengrep /opt/opengrep
+          chmod +x /opt/opengrep
+
+      - name: Run SAST scan
+        run: /opt/opengrep scan --config p/typescript --config p/secrets --config p/owasp-top-ten --config p/r2c-security-audit --config p/cwe-top-25 --config p/secure-defaults --sarif-output=opengrep.sarif .
+
+      - name: Upload SARIF results
+        if: always()
+        uses: github/codeql-action/upload-sarif@9da17a5aa4abec2340d6e6c8d8efb0770b1c9cb8 # v4.32.3
+        with:
+          sarif_file: opengrep.sarif
+          category: opengrep
