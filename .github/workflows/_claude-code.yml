@@ -18,14 +18,14 @@ jobs:
           fetch-depth: 1
 
       - name: Set up Node.js
-        uses: actions/setup-node@0a11a2f11e82bb17da4fe4b21ffff7b219e1e2b5 # v4.2.0
+        uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6.2.0
 
       - name: Install Dev Containers CLI
-        run: npm install -g @devcontainers/cli@0.80.2
+        run: npm install -g @devcontainers/cli@0.83.0
 
       - name: Run Claude Code
         id: claude
-        uses: anthropics/claude-code-action@6337623ebba10cf8c8214b507993f8062fd4ccfb # v1.0.22
+        uses: anthropics/claude-code-action@c22f7c3f9dbdf2faa98a4c3139f7ec9eb5a691dc # v1.0.50
         with:
           claude_code_oauth_token: ${{ secrets.claude_code_oauth_token }}
           claude_args: |
