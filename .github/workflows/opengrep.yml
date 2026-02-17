@@ -22,7 +22,7 @@ jobs:
 
       - name: Install OpenGrep
         run: |
-          set -e
+          set -euo pipefail
           curl --fail --silent --show-error --location https://github.com/opengrep/opengrep/releases/download/v1.16.0/opengrep_manylinux_x86 --output /tmp/opengrep
           curl --fail --silent --show-error --location https://github.com/opengrep/opengrep/releases/download/v1.16.0/opengrep_manylinux_x86.sig --output /tmp/opengrep.sig
           curl --fail --silent --show-error --location https://github.com/opengrep/opengrep/releases/download/v1.16.0/opengrep_manylinux_x86.cert --output /tmp/opengrep.cert
