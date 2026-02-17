@@ -1,0 +1,33 @@
+name: OpenGrep
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  scan:
+    name: SAST Scan
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      security-events: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v6.0.0
+
+      - name: Install OpenGrep
+        run: |
+          wget -q https://github.com/opengrep/opengrep/releases/download/v1.16.0/opengrep_manylinux_x86 -O opengrep
+          chmod +x opengrep
+
+      - name: Run SAST scan
+        run: ./opengrep scan --config auto --sarif-output=opengrep.sarif .
+
+      - name: Upload SARIF results
+        if: always()
+        uses: github/codeql-action/upload-sarif@45cbd0c69e560cd9e7cd7f8c32362050c9b7ded2 # v4.32.2
+        with:
+          sarif_file: opengrep.sarif
+          category: opengrep
