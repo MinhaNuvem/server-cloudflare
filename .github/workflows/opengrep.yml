@@ -20,9 +20,9 @@ jobs:
       - name: Install OpenGrep
         run: |
           set -e
-          wget --fail -q https://github.com/opengrep/opengrep/releases/download/v1.16.0/opengrep_manylinux_x86 -O /tmp/opengrep
-          wget --fail -q https://github.com/opengrep/opengrep/releases/download/v1.16.0/opengrep_manylinux_x86.sig -O /tmp/opengrep.sig
-          wget --fail -q https://github.com/opengrep/opengrep/releases/download/v1.16.0/opengrep_manylinux_x86.cert -O /tmp/opengrep.cert
+          curl --fail --silent --show-error --location https://github.com/opengrep/opengrep/releases/download/v1.16.0/opengrep_manylinux_x86 --output /tmp/opengrep
+          curl --fail --silent --show-error --location https://github.com/opengrep/opengrep/releases/download/v1.16.0/opengrep_manylinux_x86.sig --output /tmp/opengrep.sig
+          curl --fail --silent --show-error --location https://github.com/opengrep/opengrep/releases/download/v1.16.0/opengrep_manylinux_x86.cert --output /tmp/opengrep.cert
           cosign verify-blob \
             --certificate /tmp/opengrep.cert \
             --signature /tmp/opengrep.sig \
@@ -37,7 +37,7 @@ jobs:
 
       - name: Upload SARIF results
         if: always()
-        uses: github/codeql-action/upload-sarif@45cbd0c69e560cd9e7cd7f8c32362050c9b7ded2 # v4.32.2
+        uses: github/codeql-action/upload-sarif@9da17a5aa4abec2340d6e6c8d8efb0770b1c9cb8 # v4.32.3
         with:
           sarif_file: opengrep.sarif
           category: opengrep
