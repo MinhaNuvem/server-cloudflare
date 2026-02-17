@@ -19,7 +19,17 @@ jobs:
 
       - name: Install OpenGrep
         run: |
-          wget -q https://github.com/opengrep/opengrep/releases/download/v1.16.0/opengrep_manylinux_x86 -O /opt/opengrep
+          set -e
+          wget --fail -q https://github.com/opengrep/opengrep/releases/download/v1.16.0/opengrep_manylinux_x86 -O /tmp/opengrep
+          wget --fail -q https://github.com/opengrep/opengrep/releases/download/v1.16.0/opengrep_manylinux_x86.sig -O /tmp/opengrep.sig
+          wget --fail -q https://github.com/opengrep/opengrep/releases/download/v1.16.0/opengrep_manylinux_x86.cert -O /tmp/opengrep.cert
+          cosign verify-blob \
+            --certificate /tmp/opengrep.cert \
+            --signature /tmp/opengrep.sig \
+            --certificate-identity "https://github.com/opengrep/opengrep/.github/workflows/rolling-release.yml@refs/heads/main" \
+            --certificate-oidc-issuer "https://token.actions.githubusercontent.com" \
+            /tmp/opengrep
+          cp /tmp/opengrep /opt/opengrep
           chmod +x /opt/opengrep
 
       - name: Run SAST scan
