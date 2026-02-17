@@ -36,7 +36,7 @@ jobs:
           chmod +x /opt/opengrep
 
       - name: Run SAST scan
-        run: /opt/opengrep scan --config auto --sarif-output=opengrep.sarif .
+        run: /opt/opengrep scan --config p/typescript --config p/secrets --config p/owasp-top-ten --config p/r2c-security-audit --config p/cwe-top-25 --config p/secure-defaults --sarif-output=opengrep.sarif .
 
       - name: Upload SARIF results
         if: always()
