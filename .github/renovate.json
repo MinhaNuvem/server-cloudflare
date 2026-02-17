@@ -20,15 +20,6 @@
         "npm install -g (?<depName>@?[a-z0-9-]+\\/[a-z0-9-]+)@(?<currentValue>[0-9.]+)"
       ],
       "datasourceTemplate": "npm"
-    },
-    {
-      "customType": "regex",
-      "description": "Track OpenGrep binary version in GitHub Actions workflows",
-      "fileMatch": ["\\.github/workflows/.+\\.yml$"],
-      "matchStrings": [
-        "https://github\\.com/(?<depName>opengrep/opengrep)/releases/download/(?<currentValue>v[0-9.]+)/"
-      ],
-      "datasourceTemplate": "github-releases"
     }
   ],
   "packageRules": [
@@ -63,7 +54,7 @@
       "semanticCommitScope": "deps"
     },
     {
-      "description": "Custom-tracked dependencies in workflows use chore(deps) prefix",
+      "description": "NPM packages in workflows use chore(deps) prefix",
       "matchManagers": ["custom.regex"],
       "matchFileNames": [".github/workflows/**"],
       "semanticCommitType": "chore",
